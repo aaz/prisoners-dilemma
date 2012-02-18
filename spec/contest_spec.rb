@@ -1,20 +1,15 @@
 require_relative '../contest'
-require_relative '../tit4tat'
 
-describe "Contest" do
-  context "of ten rounds between a pair of tit-for-tat players" do
-    before(:each) do
-      @contest = Contest.new(Tit4Tat.new, Tit4Tat.new, 10)
+describe Contest do
+  it 'should alternate calls to players, calling each the same number of times' do
+    players = mock("players")   # One mock for both players, to check strict call ordering
+    iterations = 10
+    iterations.times do
+      2.times {players.should_receive(:decision).ordered}
+      2.times {players.should_receive(:experience).ordered}
     end
-    it "should end in a draw" do
-      @contest.play
-      @contest.player_one_score.should eql @contest.player_two_score
-    end
-    it "should result in 10 * 3 points each" do
-      @contest.play
-      @contest.player_one_score.should eql 30
-      @contest.player_two_score.should eql 30
-    end
+    contest = Contest.new(players, players, iterations)
+    contest.play
   end
 end
  
