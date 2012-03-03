@@ -14,4 +14,7 @@ describe GeneticPlayer do
       GeneticPlayer.new('CDCDCDCDCDCDCDCD')
     }.to raise_error(ArgumentError)
   end
+  context "with genetic code 'CCCCCCCCCCCCCCC'" do
+    it "should cooperate initially"
+  end
 end
