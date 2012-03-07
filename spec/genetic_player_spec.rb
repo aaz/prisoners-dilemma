@@ -22,28 +22,28 @@ describe GeneticPlayer do
       @player = GeneticPlayer.new(UNCONDITIONAL_COOPERATION)
     end
     it "should cooperate initially" do
-      @player.decision.should eql :cooperation
+      @player.choice.should eql :cooperate
     end
     context "when confronted with three consecutive defections" do
       it "should still cooperate" do
         3.times do
-          @player.decision
-          @player.experience :defection
+          @player.choice
+          @player.experience :defect
         end
-        @player.decision.should eql :cooperation
+        @player.choice.should eql :cooperate
       end
     end
     context "when presented with three consecutive cooperations" do
       it "should reciprocate" do
         3.times do
-          @player.decision
-          @player.experience :cooperation
+          @player.choice
+          @player.experience :cooperate
         end
-        @player.decision.should eql :cooperation
+        @player.choice.should eql :cooperate
       end
     end
   end
-  # Encoded strategy: defect when opponent defects at least twice in last three
+  # Encoded strategy: defect when accomplice defects at least twice in last three
   # Assumes cooperation-cooperation-cooperation as initial condition
   PUNISH_2_DEFECTIONS_BEGINS_CCCCCC = 'CCCCCC' + 'CCCDCDDD' * 8
   context "with genetic code #{PUNISH_2_DEFECTIONS_BEGINS_CCCCCC}" do
@@ -51,27 +51,27 @@ describe GeneticPlayer do
       @player = GeneticPlayer.new(PUNISH_2_DEFECTIONS_BEGINS_CCCCCC)
     end
     it "should cooperate initially" do
-      @player.decision.should eql :cooperation
+      @player.choice.should eql :cooperate
     end
     context "when exposed to defection, cooperation, defection" do
       it "should defect" do
-        @player.decision
-        @player.experience :defection
-        @player.decision
-        @player.experience :cooperation
-        @player.decision
-        @player.experience :defection
-        @player.decision.should eql :defection
+        @player.choice
+        @player.experience :defect
+        @player.choice
+        @player.experience :cooperate
+        @player.choice
+        @player.experience :defect
+        @player.choice.should eql :defect
       end
     end
   end
-  # Encoded strategy: defect when opponent defects at least twice in last three
+  # Encoded strategy: defect when accomplice defects at least twice in last three
   # Assumes defection-cooperation-defection as initial condition
   PUNISH_2_DEFECTIONS_BEGINS_CDCCCD = 'CDCCCD' + 'CCCDCDDD' * 8
   context "with genetic code #{PUNISH_2_DEFECTIONS_BEGINS_CDCCCD}" do
     it "should defect initially" do
       player = GeneticPlayer.new(PUNISH_2_DEFECTIONS_BEGINS_CDCCCD)
-      player.decision.should eql :defection
+      player.choice.should eql :defect
     end
   end
 end

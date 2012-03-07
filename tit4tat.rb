@@ -1,13 +1,13 @@
 class Tit4Tat
   def initialize
-    @decision = :cooperation
+    @choice = :cooperate
   end
   
-  def decision
-    return @decision
+  def choice
+    return @choice
   end
   
-  def experience(counter_party_decision)
-    @decision = counter_party_decision
+  def experience(counterparty_choice)
+    @choice = counterparty_choice
   end
 end

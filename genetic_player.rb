@@ -1,13 +1,13 @@
 class GeneticPlayer
   PERMS = [
-    [:cooperation, :cooperation, :cooperation],
-    [:cooperation, :cooperation, :defection],
-    [:cooperation, :defection, :cooperation],
-    [:cooperation, :defection, :defection],
-    [:defection, :cooperation, :cooperation],
-    [:defection, :cooperation, :defection],
-    [:defection, :defection, :cooperation],
-    [:defection, :defection, :defection]
+    [:cooperate, :cooperate, :cooperate],
+    [:cooperate, :cooperate, :defect],
+    [:cooperate, :defect, :cooperate],
+    [:cooperate, :defect, :defect],
+    [:defect, :cooperate, :cooperate],
+    [:defect, :cooperate, :defect],
+    [:defect, :defect, :cooperate],
+    [:defect, :defect, :defect]
   ]
   OFFSET = 6
   
@@ -19,8 +19,11 @@ class GeneticPlayer
     end
   end
   
-  def ind
-    return @@index
+  def interpret_char(char)
+    if char != 'C' and char != 'D' then
+      raise ArgumentError.new("Genetic code contains something other than 'C' or 'D'")
+    end
+    char == 'C' ? :cooperate : :defect
   end
   
   def initialize(code)
@@ -34,29 +37,30 @@ class GeneticPlayer
     end
     @code = code
     @my_choices = []
-    @opponents_choices = []
-    # First six letters encode initial conditions
+    @accomplices_choices = []
+    # First six letters encode initial conditions: 3 iterations,
+    #   alternating as my choice; accomplice's choice ...
     for i in 0..5
-      choice = @code[i] == 'C' ? :cooperation : :defection
+      choice = interpret_char(@code[i])
       if i%2 == 0
         @my_choices.push choice
       else
-        @opponents_choices.push choice
+        @accomplices_choices.push choice
       end
     end
   end
   
-  def decision
-    last_three_iterations = [(@my_choices.last 3), (@opponents_choices.last 3)]
+  def choice
+    last_three_iterations = [(@my_choices.last 3), (@accomplices_choices.last 3)]
     index = @@index[last_three_iterations] + OFFSET
-    letter = @code[index]
+    char = @code[index]
     
-    choice = letter == 'C' ? :cooperation : :defection
+    choice = interpret_char(char)
     @my_choices.push choice
     return choice
   end
   
-  def experience(counterparty_decision)
-    @opponents_choices.push counterparty_decision
+  def experience(counterparty_choice)
+    @accomplices_choices.push counterparty_choice
   end
 end

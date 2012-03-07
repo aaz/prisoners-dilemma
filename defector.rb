@@ -1,12 +1,12 @@
 class Defector
   def initialize
-    @decision = :defection
+    @choice = :defect
   end
   
-  def decision
-    return @decision
+  def choice
+    return @choice
   end
   
-  def experience(counterparty_decision)
+  def experience(counterparty_choice)
   end
 end
