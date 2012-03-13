@@ -1,4 +1,4 @@
-require_relative '../contest'
+require 'contest'
 
 describe Contest do
   it 'should alternate calls to players, calling each the same number of times' do

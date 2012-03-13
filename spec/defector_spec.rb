@@ -1,4 +1,4 @@
-require_relative '../defector'
+require 'defector'
 
 describe 'Defector' do
   context 'in the first instance' do

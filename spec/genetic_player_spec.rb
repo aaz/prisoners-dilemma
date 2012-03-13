@@ -1,4 +1,4 @@
-require_relative '../genetic_player'
+require 'genetic_player'
 
 describe GeneticPlayer do
   MUTANT_CODE = 'C' * 30 + 'F' + 'D' * 39

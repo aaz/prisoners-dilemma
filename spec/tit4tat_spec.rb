@@ -1,4 +1,4 @@
-require_relative '../tit4tat'
+require 'tit4tat'
 
 describe "Tit4Tat player" do
   before(:each) do

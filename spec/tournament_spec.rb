@@ -1,5 +1,5 @@
-require_relative '../tournament'
-require_relative '../tit4tat'
+require 'tournament'
+require 'tit4tat'
 
 describe Tournament do
   context 'with 5 tit4tat players' do
