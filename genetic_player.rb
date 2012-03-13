@@ -40,7 +40,7 @@ class GeneticPlayer
     @accomplices_choices = []
     # First six letters encode initial conditions: 3 iterations,
     #   alternating as my choice; accomplice's choice ...
-    for i in 0..5
+    for i in 0..(OFFSET-1)
       choice = interpret_char(@code[i])
       if i%2 == 0
         @my_choices.push choice
