@@ -1,4 +1,8 @@
+require 'player'
+
 class GeneticPlayer
+  include Player 
+  
   PERMS = [
     [:cooperate, :cooperate, :cooperate],
     [:cooperate, :cooperate, :defect],
@@ -27,6 +31,7 @@ class GeneticPlayer
   end
   
   def initialize(code)
+    super()
     if code.length != 70
       raise ArgumentError.new("Genetic code length is not 70")
     end
@@ -37,7 +42,6 @@ class GeneticPlayer
     end
     @code = code
     @my_choices = []
-    @accomplices_choices = []
     # First six letters encode initial conditions: 3 iterations,
     #   alternating as my choice; accomplice's choice ...
     for i in 0..(OFFSET-1)
@@ -45,22 +49,18 @@ class GeneticPlayer
       if i%2 == 0
         @my_choices.push choice
       else
-        @accomplices_choices.push choice
+        @memory_of_other_player.push choice
       end
     end
   end
   
   def choice
-    last_three_iterations = [(@my_choices.last 3), (@accomplices_choices.last 3)]
+    last_three_iterations = [(@my_choices.last 3), (@memory_of_other_player.last 3)]
     index = @@index[last_three_iterations] + OFFSET
     char = @code[index]
     
     choice = interpret_char(char)
     @my_choices.push choice
     return choice
-  end
-  
-  def experience(counterparty_choice)
-    @accomplices_choices.push counterparty_choice
   end
 end

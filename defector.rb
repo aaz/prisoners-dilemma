@@ -1,12 +1,13 @@
+require 'player'
+
 class Defector
+  include Player
+
   def initialize
-    @choice = :defect
+    super()
   end
   
   def choice
-    return @choice
-  end
-  
-  def experience(counterparty_choice)
+    return :defect
   end
 end
