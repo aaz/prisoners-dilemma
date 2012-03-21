@@ -3,8 +3,8 @@ require 'player'
 class Tit4Tat
   include Player
   
-  def initialize
-    super()
+  def initialize(name=nil)
+    name == nil ? super() : super(name)
   end
   
   def choice
