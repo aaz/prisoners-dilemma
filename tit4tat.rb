@@ -4,7 +4,7 @@ class Tit4Tat
   include Player
   
   def initialize(name=nil)
-    name == nil ? super() : super(name)
+    super(name)
   end
   
   def choice

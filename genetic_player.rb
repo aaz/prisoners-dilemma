@@ -31,7 +31,7 @@ class GeneticPlayer
   end
   
   def initialize(code, name=nil)
-    name == nil ? super() : super(name)
+    super(name)
     if code.length != 70
       raise ArgumentError.new("Genetic code length is not 70")
     end
