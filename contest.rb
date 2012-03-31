@@ -1,10 +1,11 @@
 class Contest
   def initialize(player_one, player_two, number_of_rounds)
     @player_one = player_one
-    @player_one_score = 0
     @player_two = player_two
-    @player_two_score = 0
     @number_of_rounds = number_of_rounds
+    @scores = {}
+    @scores[@player_one] = 0
+    @scores[@player_two] = 0
   end
   
   def play
@@ -19,25 +20,21 @@ class Contest
   
   def score_round(player_one_choice, player_two_choice)
     if player_one_choice == :cooperate and player_two_choice == :cooperate
-      @player_one_score += 3
-      @player_two_score += 3
+      @scores[@player_one] += 3
+      @scores[@player_two] += 3
     elsif player_one_choice == :cooperate and player_two_choice == :defect
-      @player_one_score += 0
-      @player_two_score += 5
+      @scores[@player_one] += 0
+      @scores[@player_two] += 5
     elsif player_one_choice == :defect and player_two_choice == :cooperate
-      @player_one_score += 5
-      @player_two_score += 0
+      @scores[@player_one] += 5
+      @scores[@player_two] += 0
     elsif player_one_choice == :defect and player_two_choice == :defect
-      @player_one_score += 1
-      @player_two_score += 1
+      @scores[@player_one] += 1
+      @scores[@player_two] += 1
     end
   end
   
-  def player_one_score
-    @player_one_score
-  end
-  
-  def player_two_score
-    @player_two_score
+  def scores
+    @scores
   end
 end

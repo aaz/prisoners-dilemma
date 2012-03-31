@@ -18,8 +18,8 @@ describe Contest do
       player_two = Tit4Tat.new
       contest = Contest.new(player_one, player_two, 10)
       contest.play
-      contest.player_one_score.should == 30
-      contest.player_two_score.should == 30
+      contest.scores[player_one].should == 30
+      contest.scores[player_two].should == 30
     end
   end
 end
