@@ -10,8 +10,8 @@ describe Tournament do
       @tournament = Tournament.new(@players)
       @tournament.run
     end
-    it 'should involve 14 contests' do
-      @tournament.contests.size.should == 14
+    it 'should involve 15 contests' do
+      @tournament.contests.size.should == 15
     end
     it 'should result in 30 points per player' do
       @tournament.contests.keys.each do |key|
@@ -20,7 +20,7 @@ describe Tournament do
       end
     end
   end
-  it 'should have a result for the contest between a strategy and its twin' do
+  it 'should involve a contest between each strategy and its twin' do
     # pending
     defector = Defector.new
     tit4tat = Tit4Tat.new
@@ -28,5 +28,6 @@ describe Tournament do
     tournament = Tournament.new(players)
     tournament.run
     tournament.contests.should have_key([defector.name, defector.name])
+    tournament.contests.should have_key([tit4tat.name, tit4tat.name])
   end
 end

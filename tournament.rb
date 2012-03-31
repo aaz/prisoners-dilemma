@@ -1,4 +1,4 @@
-require_relative 'contest'
+require 'contest'
 
 class Tournament
   def initialize(players)
@@ -12,24 +12,16 @@ class Tournament
   
   def run
     # Round robin contests
-#    for i in 0..(@players.size-2) do
-#      for j in (i+1)..(@players.size-1) do
-#        @contests[[@players[i], @players[j]]] = Contest.new(@players[i], @players[j], 10)
-#        @contests[[@players[i], @players[j]]].play
-#      end
-#    end
-    
-    while (@players.size >= 2) do
-      player = @players.shift
-      twin = player.dup
-      @players.each do |opponent|
-        contest = Contest.new(player, opponent, 10)
-        contest.play
-        @contests[[player.name, opponent.name]] = contest
+    for i in 0..(@players.size-1) do
+      player = @players[i]
+      for j in (i+1)..(@players.size-1) do
+        opponent = @players[j]
+        @contests[[player.name, opponent.name]] = Contest.new(player, opponent, 10)
+        @contests[[player.name, opponent.name]].play
       end
-      contest = Contest.new(player, twin, 10)
-      contest.play
-      @contests[[player.name, twin.name]] = contest
+      twin = player.dup
+      @contests[[player.name, twin.name]] = Contest.new(player, twin, 10)
+      @contests[[player.name, twin.name]].play
     end
   end
 end
