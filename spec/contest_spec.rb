@@ -1,4 +1,5 @@
 require 'contest'
+require 'tit4tat'
 
 describe Contest do
   it 'should alternate calls to players, calling each the same number of times' do
@@ -10,6 +11,16 @@ describe Contest do
     end
     contest = Contest.new(players, players, iterations)
     contest.play
+  end
+  context 'of 10 iterations between paired Tit For Tat players' do
+    it 'should result in 30 points each' do
+      player_one = Tit4Tat.new
+      player_two = Tit4Tat.new
+      contest = Contest.new(player_one, player_two, 10)
+      contest.play
+      contest.player_one_score.should == 30
+      contest.player_two_score.should == 30
+    end
   end
 end
  
