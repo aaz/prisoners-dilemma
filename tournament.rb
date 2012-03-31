@@ -21,11 +21,15 @@ class Tournament
     
     while (@players.size >= 2) do
       player = @players.shift
+      twin = player.dup
       @players.each do |opponent|
         contest = Contest.new(player, opponent, 10)
         contest.play
         @contests[[player.name, opponent.name]] = contest
       end
+      contest = Contest.new(player, twin, 10)
+      contest.play
+      @contests[[player.name, twin.name]] = contest
     end
   end
 end

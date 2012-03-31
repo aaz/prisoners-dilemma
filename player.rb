@@ -4,6 +4,10 @@ module Player
     @memory_of_other_player = []
   end
   
+  def initialize_copy(name=@player_name)
+    @memory_of_other_player = []
+  end
+  
   def name
     @player_name
   end
