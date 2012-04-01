@@ -1,7 +1,7 @@
 require 'contest'
 
 class Tournament
-  attr_reader :round, :contests
+  attr_reader :round, :contests, :players
   def initialize(players)
     @players = players
     @round = Round.new(players)
