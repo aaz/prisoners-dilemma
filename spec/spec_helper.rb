@@ -9,3 +9,28 @@ RSpec.configure do |config|
   config.run_all_when_everything_filtered = true
   config.filter_run :focus
 end
+
+# Project specfic custom matchers
+RSpec::Matchers.define :contain do |player_name|
+  match do |collection|
+    matched = false
+    collection.each do |item|
+      if (item.name == player_name) then
+        matched = true
+      end
+    end
+    matched
+  end
+end
+
+RSpec::Matchers.define :contain_anonymous do |player_type|
+  match do |collection|
+    matched = false
+    collection.each do |item|
+      if (item.class.to_s == player_type) then
+        matched = true
+      end
+    end
+    matched
+  end
+end
