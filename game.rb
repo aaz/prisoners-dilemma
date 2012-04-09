@@ -1,15 +1,15 @@
-class Contest
-  def initialize(player_one, player_two, number_of_rounds)
+class Game
+  def initialize(player_one, player_two, number_of_iterations)
     @player_one = player_one
     @player_two = player_two
-    @number_of_rounds = number_of_rounds
+    @number_of_iterations = number_of_iterations
     @scores = {}
     @scores[@player_one] = 0
     @scores[@player_two] = 0
   end
   
   def play
-      @number_of_rounds.times do
+      @number_of_iterations.times do
       player_one_choice = @player_one.choice
       player_two_choice = @player_two.choice
       score_round(player_one_choice, player_two_choice)
