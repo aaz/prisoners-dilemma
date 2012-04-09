@@ -13,7 +13,7 @@ describe Round do
         round.award_points(player_one, 10)
         round.award_points(player_two, 30)
         
-        results = round.overall_results
+        results = round.results
 
         results.size.should == 2
         total = results.first.total

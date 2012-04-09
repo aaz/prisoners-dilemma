@@ -1,9 +1,10 @@
 require 'contest'
 
 class Tournament
-  attr_reader :round, :contests, :players
-  def initialize(players)
+  attr_reader :contests, :players, :iterations
+  def initialize(players, iterations=100)
     @players = players
+    @iterations = iterations
     @round = Round.new(players)
     @contests = {}
   end
@@ -14,7 +15,7 @@ class Tournament
       player = @players[i]
       for j in (i+1)..(@players.size-1) do
         opponent = @players[j]
-        contest = Contest.new(player, opponent, 10)
+        contest = Contest.new(player, opponent, @iterations)
         contest.play
         @round.award_points(player, contest.scores[player])
         @round.award_points(opponent, contest.scores[opponent])
@@ -26,5 +27,9 @@ class Tournament
       @round.award_points(player, contest.scores[player])
       @contests[[player.name, twin.name]] = contest
     end
+  end
+  
+  def results
+    @round.results
   end
 end

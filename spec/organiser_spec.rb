@@ -5,6 +5,8 @@ describe Organiser do
   yaml = <<-END
 ---
 -
+  iterations: 20
+-
   class: Defector
   name: Traitor
 -
@@ -15,20 +17,23 @@ END
 
   context "reading config file contents:\n#{yaml}" do
     before(:each) do
-      @organiser = Organiser.new
-      @organiser.read_config(yaml)
+      organiser = Organiser.new
+      @tournament = organiser.read_config(yaml)
     end
     it 'should set up a tournament with 3 players' do
-      @organiser.tournament.players.size.should == 3
+      @tournament.players.size.should == 3
     end
     it 'should include a Defector called Traitor' do
-      @organiser.tournament.players.should contain("Traitor")
+      @tournament.players.should contain("Traitor")
     end
     it 'should include a Tit4Tat player' do
-      @organiser.tournament.players.should contain_anonymous("Tit4Tat")
+      @tournament.players.should contain_anonymous("Tit4Tat")
     end
     it 'should include a RandomPlayer' do
-      @organiser.tournament.players.should contain_anonymous("RandomPlayer")
+      @tournament.players.should contain_anonymous("RandomPlayer")
+    end
+    it 'should involve games of 20 iterations' do
+      @tournament.iterations.should == 20
     end
   end
 end

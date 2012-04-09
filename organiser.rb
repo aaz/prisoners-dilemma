@@ -12,15 +12,20 @@ class Organiser
   
   def read_config(yaml)
     @config = YAML.load(yaml)
+    iterations = nil
     @config.each do |entry|
-      classname = entry['class']
-      player_name = entry['name']
-      @players.push Object::const_get(classname).new player_name
+      if entry.has_key? "iterations" then
+        iterations = entry["iterations"]
+      elsif entry.has_key? "class" then
+        classname = entry["class"]
+        player_name = entry["name"]
+        @players.push Object::const_get(classname).new player_name
+      end
     end
-    @tournament = Tournament.new @players
-  end
-  
-  def tournament
-    @tournament
+    if iterations == nil then
+      return Tournament.new @players
+    else
+      return Tournament.new(@players, iterations)
+    end
   end
 end
