@@ -1,5 +1,5 @@
 module Player
-  def initialize(name)
+  def initialize(name=nil)
     @player_name = name == nil ? (self.class.to_s + '.' + self.object_id.to_s) : name
     @memory_of_other_player = []
   end
