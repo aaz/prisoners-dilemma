@@ -26,5 +26,13 @@ describe 'TitForTwoTats' do
       @player.experience :defect
       @player.choice.should eql :defect
     end
+    context 'followed immediately by cooperation' do
+      it 'should forgive' do
+        @player.experience :defect
+        @player.experience :defect
+        @player.experience :cooperate
+        @player.choice.should eql :cooperate
+      end
+    end
   end
 end
