@@ -1,6 +1,8 @@
 require 'yaml'
 require 'defector'
+require 'friedman'
 require 'tit4tat'
+require 'tit_for_two_tats'
 require 'random_player'
 require 'tournament'
 require 'round'
