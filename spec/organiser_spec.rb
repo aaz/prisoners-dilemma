@@ -11,6 +11,7 @@ describe Organiser do
   name: Traitor
 -
   class: Tit4Tat
+  copies: 3
 -
   class: RandomPlayer
 END
@@ -20,8 +21,8 @@ END
       organiser = Organiser.new
       @tournament = organiser.read_config(yaml)
     end
-    it 'should set up a tournament with 3 players' do
-      @tournament.players.size.should == 3
+    it 'should set up a tournament with 5 players' do
+      @tournament.players.size.should == 5
     end
     it 'should include a Defector called Traitor' do
       @tournament.players.should contain("Traitor")
