@@ -5,7 +5,7 @@ This should be fairly straightforward, even if you're starting from square one.
 ## _Install ..._ ##
 ### Ruby ###
 The code was developed using Ruby 1.9, so I recommend installing that version.  Ruby Version Manager (rvm) enables you to manage multiple versions of the Ruby platform on one machine, and to switch easily between them.  It works for me ...
-### `bundler` ###
+### bundler ###
 Use gem, Ruby's package manager, to install the bundler gem:
 
     gem install bundler
@@ -16,8 +16,19 @@ You should notice a Gemfile.lock file in the root directory of the project.  Thi
 
     bundle install
 ## _Run_ ##
-From the project root directory, type the following:
+### specs ###
+To execute the suite of specs, type the following from the project root directory:
+
+    rspec
+
+Alternatively, you can type:
 
     autotest
 
-This will execute the suite of specs for the project.
+This will start the autotest process.  Autotest executes the specs on launch, and subsequently whenever project files are modified.  It can also be configured to use growl style notifications (either in OS/X or Windows) to notify you when you're making changes using your IDE or text editor. 
+### Tournament ###
+To run a tournament, type the following:
+
+    rake -I. filename=tournament.yaml
+
+Which will execute the default rake task using the configuration given in the sample YAML file. 
