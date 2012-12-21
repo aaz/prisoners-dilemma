@@ -1,4 +1,4 @@
-require 'friedman'
+require_relative '../players/friedman'
 
 describe 'Friedman' do
   before(:each) do

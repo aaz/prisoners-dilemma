@@ -1,4 +1,4 @@
-require 'cooperator'
+require_relative '../players/cooperator'
 
 describe Cooperator do
   before(:each) do

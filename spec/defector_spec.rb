@@ -1,4 +1,4 @@
-require 'defector'
+require_relative '../players/defector'
 
 describe 'Defector' do
   context 'in the first instance' do

@@ -1,11 +1,11 @@
 require 'yaml'
-require 'defector'
-require 'friedman'
-require 'tit4tat'
-require 'tit_for_two_tats'
-require 'random_player'
 require 'tournament'
 require 'round'
+require_relative 'players/defector'
+require_relative 'players/friedman'
+require_relative 'players/tit_for_tat'
+require_relative 'players/tit_for_two_tats'
+require_relative 'players/random_player'
 
 class Organiser
   def initialize

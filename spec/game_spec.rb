@@ -1,5 +1,5 @@
 require 'game'
-require 'tit4tat'
+require_relative '../players/tit_for_tat'
 
 describe Game do
   it 'should alternate calls to players, calling each the same number of times' do
@@ -14,8 +14,8 @@ describe Game do
   end
   context 'of 10 iterations between paired Tit For Tat players' do
     it 'should result in 30 points each' do
-      player_one = Tit4Tat.new
-      player_two = Tit4Tat.new
+      player_one = TitForTat.new
+      player_two = TitForTat.new
       game = Game.new(player_one, player_two, 10)
       game.play
       game.scores[player_one].should == 30

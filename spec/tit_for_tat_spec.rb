@@ -1,8 +1,8 @@
-require 'tit4tat'
+require_relative '../players/tit_for_tat'
 
-describe "Tit4Tat player" do
+describe "TitForTat player" do
   before(:each) do
-    @player = Tit4Tat.new
+    @player = TitForTat.new
   end
   context "in the first instance" do
     it "should cooperate" do

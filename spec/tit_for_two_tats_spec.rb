@@ -1,4 +1,4 @@
-require 'tit_for_two_tats'
+require_relative '../players/tit_for_two_tats'
 
 describe 'TitForTwoTats' do
   before(:each) do

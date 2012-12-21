@@ -1,6 +1,6 @@
 require 'player'
 
-class Tit4Tat
+class TitForTat
   include Player
   
   def choice

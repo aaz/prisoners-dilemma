@@ -10,7 +10,7 @@ describe Organiser do
   class: Defector
   name: Traitor
 -
-  class: Tit4Tat
+  class: TitForTat
   copies: 3
 -
   class: RandomPlayer
@@ -27,8 +27,8 @@ END
     it 'should include a Defector called Traitor' do
       @tournament.players.should contain("Traitor")
     end
-    it 'should include a Tit4Tat player' do
-      @tournament.players.should contain_anonymous("Tit4Tat")
+    it 'should include a TitForTat player' do
+      @tournament.players.should contain_anonymous("TitForTat")
     end
     it 'should include a RandomPlayer' do
       @tournament.players.should contain_anonymous("RandomPlayer")
