@@ -1,15 +1,20 @@
 require 'yaml'
 require 'tournament'
 require 'round'
-require_relative 'players/defector'
-require_relative 'players/friedman'
-require_relative 'players/tit_for_tat'
-require_relative 'players/tit_for_two_tats'
-require_relative 'players/random_player'
 
 class Organiser
   def initialize
     @players = []
+    
+    load_player_implementations
+  end
+
+  def load_player_implementations
+    Dir.foreach(File.dirname(File.expand_path(__FILE__)) + "/players") do |f|
+      if (f.end_with? ".rb") then
+        require_relative ("players/" + f)
+      end
+    end
   end
   
   def read_config(yaml)
