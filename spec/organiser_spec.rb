@@ -19,22 +19,22 @@ END
   context "reading config file contents:\n#{yaml}" do
     before(:each) do
       organiser = Organiser.new
-      @tournament = organiser.read_config(yaml)
+      @round = organiser.read_config(yaml).round
     end
     it 'should set up a tournament with 5 players' do
-      @tournament.players.size.should == 5
+      @round.players.size.should == 5
     end
     it 'should include a Defector called Traitor' do
-      @tournament.players.should contain("Traitor")
+      @round.players.should contain("Traitor")
     end
     it 'should include a TitForTat player' do
-      @tournament.players.should contain_anonymous("TitForTat")
+      @round.players.should contain_anonymous("TitForTat")
     end
     it 'should include a RandomPlayer' do
-      @tournament.players.should contain_anonymous("RandomPlayer")
+      @round.players.should contain_anonymous("RandomPlayer")
     end
     it 'should involve games of 20 iterations' do
-      @tournament.iterations.should == 20
+      @round.iterations.should == 20
     end
   end
 end
